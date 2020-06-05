@@ -1,9 +1,16 @@
+p {
+	font-family: 'Noto Sans KR', sans-serif;
+}
 body {
 	background-color: #EEFFFF;
 	margin:0;
 }
 h1 {
 	text-align-last: center;
+	font-family: 'Lobster', cursive;
+	font-size: 5vw;
+	padding: 30px;
+	margin:0;
 }
 #navbar {
 	overflow: hidden;
@@ -16,11 +23,9 @@ h1 {
 	padding: 14px 16px;
 	text-decoration: none;
 	font-size: 17px;
+	font-family: 'Noto Sans KR', sans-serif;
 }
-#navbar a:hover {
-	background-color: #ddd;
-	color: black;
-}
+
 #cart {
 	float: right;
 	background-color: #FFFF25;
@@ -30,8 +35,13 @@ h1 {
 	float: left;
 	color: #f2f2f2;
 }
+.left:hover {
+	background-color:#F1F1F1;
+	color: black;
+}
 .itemtitle{
-	size: 10px;
+	font-size: 25px;
+	color: #FF1617;
 }
 .itemdescription {
 	size: 10px;
@@ -43,18 +53,35 @@ h1 {
 .itemprice{
 	size: 10px;
 }
-.itembutton {
-	size: 10px;
-}
 .itemdiv{
 	display: inline-grid;
 	justify-items: center;
     grid-auto-columns: auto;
-	text-align: center;
+	margin:0;
 	width: 30%;
 	grid-auto-rows: auto;
+	grid-gap: 1em;
+	
 
 }
 #items {
 	text-align: center;
+	padding: 20px;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+button {
+	font-size: 20px;
+	font-family: 'Noto Sans KR', sans-serif;
+	padding: 10px;
+	background-color: #FFFF25;
+	text-decoration: none;
+	border: none;
+}
+button:hover {
+	background-color: #000000;
+	color: white;
 }

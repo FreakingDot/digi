@@ -2,6 +2,8 @@
 	<head>
 		<title> Retro Shop </title>
 		<link rel="stylesheet" href="style.css">
+		<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
 	</head>
 	<body>
 		<div>
@@ -132,7 +134,7 @@
 		var incart=0
 		
 		var itemsHTML = document.getElementById("items");    
-		for (var index = 0; index < items.length; index++) {
+		for (var index = 0; index < 15; index++) {
 			let item = items[index];
 			
 			var itemDIV= document.createElement("div");
@@ -156,37 +158,54 @@
 			document.getElementById([index]+"item").appendChild(descriptionHTML);
   			
 			var priceHTML = document.createElement("p");
-			priceHTML.innerHTML = items[index].price;
+			priceHTML.innerHTML = item.price+"&euro;";
 			priceHTML.setAttribute("class", "itemprice");
 			document.getElementById([index]+"item").appendChild(priceHTML);
 			
 		    var addButtonHTML = document.createElement("button");
-			addButtonHTML.innerHTML = "Add";
-			addButtonHTML.setAttribute("class", "itembutton");
-			addButtonHTML.addEventListener("click", function() {
-            // This code will be called when you press the button.
-            console.log(item.price);
-            totalPrice = totalPrice + item.price;
-            console.log("Total is " + totalPrice.toFixed(2));            
-			cart.push(item.title);
-            console.log(cart);
-			incart= incart +1;
-			document.getElementById("cart").innerHTML=incart+" item(s)"+" | "+""+totalPrice.toFixed(2)+"&euro;";
-			
-        });
-        document.getElementById([index]+"item").appendChild(addButtonHTML); 
-		
-		var removeHTML = document.createElement("button");
-        removeHTML.innerHTML = "Remove";
-		removeHTML.setAttribute("class", "itembutton");
-        removeHTML.addEventListener("click", function() {
-            totalPrice = totalPrice - item.price;
-            console.log("Total is " + totalPrice.toFixed(2));
-			incart= incart - 1;
-			document.getElementById("cart").innerHTML=incart+" item(s)"+" | "+""+totalPrice.toFixed(2)+"&euro;";
+			addButtonHTML.innerHTML = "Add to cart";
+			addButtonHTML.setAttribute("id", index+"add");
 
-        });
-        document.getElementById([index]+"item").appendChild(removeHTML);
+			addButtonHTML.addEventListener("click", function(){
+				incart= incart+1;
+
+				document.getElementById(item.id+"add").style.display="none";
+				document.getElementById(item.id+"remove").style.display="block";
+
+				totalPrice= totalPrice+ item.price;
+				document.getElementById("cart").innerHTML=incart+" item(s)"+" | "+""+totalPrice.toFixed(2)+"&euro;";
+			});
+			document.getElementById([index]+"item").appendChild(addButtonHTML); 
+
+			var removeHTML = document.createElement("button");
+			removeHTML.setAttribute("style", "display:none;");
+			removeHTML.setAttribute("id", index+"remove");	
+			removeHTML.innerHTML="Remove from cart";
+
+			removeHTML.addEventListener("click", function() {
+				incart= incart-1;
+
+				document.getElementById(item.id+"add").style.display="block";
+				document.getElementById(item.id+"remove").style.display="none";
+
+				totalPrice= totalPrice- item.price;
+				document.getElementById("cart").innerHTML=incart+" item(s)"+" | "+""+totalPrice.toFixed(2)+"&euro;";
+			});	
+			document.getElementById([index]+"item").appendChild(removeHTML);
+		
+		//sticky navbar
+		window.onscroll = function() {myFunction()};
+
+		var navbar = document.getElementById("navbar");
+		var sticky = navbar.offsetTop;
+
+		function myFunction() {
+		  if (window.pageYOffset >= sticky) {
+			navbar.classList.add("sticky")
+		  } else {
+			navbar.classList.remove("sticky");
+		  }
+		};
     }		
 	</script>
 </html>
